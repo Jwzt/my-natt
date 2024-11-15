@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My natt</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            font-family: 'Georgia', serif;
+            color: #f0f0f0;
+            overflow: hidden;
+            text-align: center;
+            cursor: pointer; /* Indica que o usuário precisa clicar para interagir */
+        }
+        .container {
+            max-width: 600px;
+            padding: 40px;
+        }
+        .message {
+            font-size: 1.7em;
+            color: #f0f0f0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out; /* Transição suave */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="message" id="message"></p>
+    </div>
+
+    <script>
+        // Música de fundo
+        const music = new Audio('videoplayback.m4a');  // Coloque o caminho correto para o arquivo de música
+        music.loop = true;  // Para tocar a música em loop
+        music.volume = 0.1;  // Volume inicial, que permanecerá o mesmo
+
+        // Função para iniciar a música
+        function startMusic() {
+            music.currentTime = 160;  // Define o tempo de início para 2:40 (160 segundos)
+            music.play().catch(error => {
+                console.log("Erro na reprodução automática:", error);
+            });
+        }
+
+        // Espera pelo clique do usuário para iniciar a música
+        document.body.addEventListener('click', startMusic, { once: true });
+
+        // Mensagens para exibir
+        const loveMessages = [
+            "oioi meu amor, bom qria dizer algumas coisinhas assim que vc acordar",
+            "você é a razão pela qual meus dias são alegres.",
+            "seu sorriso é a luz que ilumina o meu mundo.",
+            "te amar é o que faz minha vida ser completa.",
+            "e cada momento ao seu lado é um presente que eu guardo no coração.",
+            "você é a paz que encontro em meio ao caos da vida.",
+            "meu amor por você cresce a cada dia silenciosamente, como as estrelas no céu.",
+            "sou grato por cada momento e sorrisos com vc.",
+            "você é o começo e o fim de tudo que importa para mim.",
+            "obrigado por me dar a oportunidade de ser feliz ao seu lado",
+            "você é a razão pela qual meu coração sorri todos os dias.",
+            "a cada passo que dou, sei que estou indo na direção certa, porque estou ao seu lado.",
+            "quando penso em você, vejo tudo o que sempre sonhei.",
+            "quando estou com você, o tempo parece desacelerar, como se o mundo fizesse uma pausa só para nós dois.",
+            "não importa o que aconteça, desde que eu tenha você, sei que tudo vai dar certo.",
+            "você é a minha calma em dias de tempestade e a minha energia nos dias em que o mundo parece sem cor.",
+            "voce é tudo pra mim, obrigado por tudo, e me perdoa as vezes, do modo que eu ajo, eu te amo",
+            "“Se eu fosse capaz de amar alguém… seria você.”",
+            "eu te amo meu amor, pra sempre 🤍"
+        ];
+
+        let loveMessageIndex = 0;
+
+        // Função para mudar as mensagens
+        function changeLoveMessage() {
+            const messageElement = document.getElementById("message");
+            
+            // Fade out a mensagem atual antes de trocar
+            messageElement.style.opacity = 0;
+            
+            setTimeout(() => {
+                // Troca a mensagem após o fade-out
+                messageElement.textContent = loveMessages[loveMessageIndex];
+                loveMessageIndex = (loveMessageIndex + 1) % loveMessages.length;
+                
+                // Fade in a nova mensagem
+                messageElement.style.opacity = 1;
+            }, 1000); // Aguardar 1 segundo para completar o fade-out
+        }
+
+        changeLoveMessage();
+        setInterval(changeLoveMessage, 6000); // Muda a mensagem a cada 6 segundos (incluindo o fade)
+
+    </script>
+</body>
+</html>
